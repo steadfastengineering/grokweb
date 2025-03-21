@@ -30,8 +30,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -49,8 +49,10 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
+//    implementation (libs.geckoview.stable)
+    implementation ("org.mozilla.geckoview:geckoview-stable:119.0.1@aar")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
