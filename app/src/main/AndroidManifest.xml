@@ -20,6 +20,7 @@
         <activity
             android:name="com.steadfast.grokweb.MainActivity"
             android:launchMode="singleInstance"
+            android:alwaysRetainTaskState="true"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Grokweb"
