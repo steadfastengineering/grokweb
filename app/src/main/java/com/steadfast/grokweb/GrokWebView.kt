@@ -36,7 +36,7 @@ fun GrokWebView() {
     // and if they are not, redirect to a fallback URL or display an error message.
 
     val context = LocalContext.current
-    val URL by remember { mutableStateOf("https://www.google.com") }
+    val URL by remember { mutableStateOf("https://www.grok.com") }
     val webView = remember {
         WebView(context).apply {
             layoutParams = ViewGroup.LayoutParams(
