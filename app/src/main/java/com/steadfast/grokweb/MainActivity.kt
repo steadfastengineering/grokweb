@@ -9,8 +9,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.steadfast.grokweb.ui.theme.GrokwebTheme
-
-
+//import org.mozilla.geckoview.GeckoRuntime
+//import org.mozilla.geckoview.GeckoSession
+//import org.mozilla.geckoview.GeckoView
+//
+//private lateinit var geckoRuntime: GeckoRuntime
+//private lateinit var geckoSession: GeckoSession
 
 class MainActivity : ComponentActivity() {
 
