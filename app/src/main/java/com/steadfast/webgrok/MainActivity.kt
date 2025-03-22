@@ -22,14 +22,15 @@ class MainActivity : ComponentActivity() {
 
         setContentView(R.layout.activity_main)
 
+        // Configure the view settings
         geckoView = findViewById(R.id.geckoview)
         geckoView.setBackgroundColor(Color.BLACK)
         geckoView.autofillEnabled = true
+        
+        // Configure the session and runtime
         geckoSession = GeckoSession()
-
         geckoRuntime = GeckoRuntime.create(this)
         geckoRuntime.settings.setPreferredColorScheme(COLOR_SCHEME_DARK)
-
         geckoSession.open(geckoRuntime)
         geckoView.setSession(geckoSession)
 
