@@ -1,4 +1,4 @@
-package com.steadfast.grokweb.ui.theme
+package com.steadfast.webgrok.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
