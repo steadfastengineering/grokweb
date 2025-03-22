@@ -1,15 +1,22 @@
 # Grokweb
-A simple `webview` display of Grok's web application. "Tinfoil" for Grok if you will. This was done
-to port access to Grok to Android devices which aren't able to install the official Grok app.  
-Built in Kotlin with Jetpack and Compose.  
+A simple display of Grok's mobile web application. "Tinfoil" for Grok if you will. This was done
+to port access to Grok to Android devices which aren't able to install the official Grok app, or
+those who may want to access it in a different way.
+
+### Under the hood
+The application uses Mozilla's `geckoview` to package the webpage and manage state. This ensures
+better compatability as the application contains a full runtime from Mozilla rather than rendering 
+the web page via whichever installed `webview` a user may be stuck with on their system. 
+
+### Privacy
+No data is collected by this application. Any interaction with the underlying website is between
+the user and the website. 
 
 ### TODOs:
-1. Handle navigation to and from the app correctly so state is preserved in the view. 
-2. Populate info button. 
-3. Fix AOSP `webview` bug for those without Gapps or those running AOSP ROMS have access.
+- Populate info button. 
 
 ### Bugs: 
-- AOSP based ROMs have problems loading, resulting in `ERR_INTERNET_DISCONNECTED`. 
+- None right now, testing required
 
 ### License
 This project is licensed under the MIT License.
