@@ -4,6 +4,7 @@ package com.steadfast.webgrok
 import android.graphics.Color.BLACK
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.mozilla.geckoview.GeckoRuntime
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         // Configure the session and runtime
         geckoSession = GeckoSession()
-        geckoRuntime = GeckoRuntime.create(context)
+        geckoRuntime = GeckoRuntime.getDefault(context)
         geckoRuntime.settings.setPreferredColorScheme(COLOR_SCHEME_DARK)
         geckoSession.open(geckoRuntime)
         geckoView.setSession(geckoSession)
@@ -50,6 +51,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.about_item -> {
+                // Handle About item click here
+                Toast.makeText(this, "About item clicked!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onStop() {
