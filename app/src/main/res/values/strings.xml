@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Webgrok</string>
+    <string name="about_item">about_item</string>
 </resources>
