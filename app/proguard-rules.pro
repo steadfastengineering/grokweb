@@ -25,3 +25,7 @@
 -dontwarn java.beans.IntrospectionException
 -dontwarn java.beans.Introspector
 -dontwarn java.beans.PropertyDescriptor
+
+# Shrink, optimize, and obfuscate the code
+-optimizationpasses 5
+-dontusemixedcaseclassnames
