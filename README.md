@@ -12,6 +12,13 @@ the web page via whichever installed `webview` a user may be stuck with on their
 No data is collected by this application. Any interaction with the underlying website is between
 the user and the website. 
 
+### Screenshots
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="screenshots/screenshot_1.jpg" alt="Screenshot 1" style="width: 48%;">
+  <img src="screenshots/screenshot_2.jpg" alt="Screenshot 2" style="width: 48%;">
+</div>
+
 ### TODOs:
 - Populate info button. 
 
