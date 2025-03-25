@@ -19,8 +19,6 @@ the underlying website is between the user and the website.
 </div>
 
 ### TODOs:
-- Populate 'about' fragment with information. 
-- Add a clear local content (for sign out) to action bar settings list.
 - Launch intent for internet browser for any links that are not root or valid grok links.
 - Add feature for uploading documents to grok.  
 - Add feature to save images and things to local storage that are generated.
