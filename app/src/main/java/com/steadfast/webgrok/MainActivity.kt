@@ -7,10 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.mozilla.geckoview.GeckoResult
 import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoRuntimeSettings.COLOR_SCHEME_DARK
 import org.mozilla.geckoview.GeckoSession
+import org.mozilla.geckoview.GeckoSession.PromptDelegate.AutocompleteRequest
+import org.mozilla.geckoview.GeckoSession.PromptDelegate.PromptResponse
 import org.mozilla.geckoview.GeckoView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,12 +37,15 @@ class MainActivity : AppCompatActivity() {
 
         // Configure the session and runtime
         geckoSession = GeckoSession()
-        geckoRuntime = GeckoRuntime.getDefault(context)
+        geckoRuntime = GeckoRuntime.getDefault(context) // Does this prevent multiple runtimes from being created?
         geckoRuntime.settings.setPreferredColorScheme(COLOR_SCHEME_DARK)
+        geckoRuntime.settings.setLoginAutofillEnabled(true)
+        geckoRuntime.settings.setDoubleTapZoomingEnabled(false)
         geckoSession.open(geckoRuntime)
         geckoView.setSession(geckoSession)
 
         geckoSession.progressDelegate = createProgressDelegate()
+
 
         // Restore session state if available
         viewSessionState?.let {
