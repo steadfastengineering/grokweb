@@ -8,14 +8,19 @@ android {
     namespace 'com.steadfast.webgrok'
     compileSdk 35
 
+    buildFeatures {
+        buildConfig true
+
+    }
+
     defaultConfig {
         applicationId "com.steadfast.webgrok"
-        minSdk 30
+        minSdk 31
         targetSdk 35
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "REPO_URL", "\"github.com/steadfastengineering/grokweb\""
     }
 
     buildTypes {
@@ -24,7 +29,11 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+        }
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -34,24 +43,26 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig = true
     }
 }
 
 ext {
-    geckoviewChannel = "beta" // TODO: se "stable" instead of "beta"
+    geckoviewChannel = "beta" // TODO: Set "stable" instead of "beta"
     geckoviewVersion = "137.0.20250321113016" // TODO: check maven.mozilla.org for latest
 }
 
 dependencies {
     implementation "org.mozilla.geckoview:geckoview-${geckoviewChannel}:${geckoviewVersion}"
     implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout // For the about_fragment layout
     implementation platform(libs.androidx.compose.bom)
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation platform(libs.androidx.compose.bom)
     debugImplementation libs.androidx.ui.tooling
     debugRuntimeOnly libs.androidx.ui.test.manifest
-  androidTestImplementation libs.androidx.monitor
-  androidTestImplementation libs.junit
-  implementation libs.androidx.lifecycle.viewmodel
+    androidTestImplementation libs.androidx.monitor
+    androidTestImplementation libs.junit
+    implementation libs.androidx.lifecycle.viewmodel
 }

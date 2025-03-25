@@ -1,6 +1,7 @@
 [versions]
 agp = "8.9.0"
 appcompat = "1.7.0"
+constraintlayout = "2.2.1"
 dependencyAnalysisGradlePlugin = "2.13.1"
 kotlin = "2.0.21"
 coreKtx = "1.10.1"
@@ -15,6 +16,7 @@ monitor = "1.7.2"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewmodel" }
 androidx-monitor = { module = "androidx.test:monitor", version.ref = "monitor" }
