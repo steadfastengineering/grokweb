@@ -7,18 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.mozilla.geckoview.GeckoResult
 import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoRuntimeSettings.COLOR_SCHEME_DARK
 import org.mozilla.geckoview.GeckoSession
-import org.mozilla.geckoview.GeckoSession.PromptDelegate.AutocompleteRequest
-import org.mozilla.geckoview.GeckoSession.PromptDelegate.PromptResponse
 import org.mozilla.geckoview.GeckoView
-
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var context:MainActivity
+    private lateinit var context:MainActivity
     private lateinit var geckoView: GeckoView
     private lateinit var geckoSession: GeckoSession
     private lateinit var geckoRuntime: GeckoRuntime
@@ -61,22 +57,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         return when (item.itemId) {
             R.id.about_item -> {
-                // Handle About item click here
-                Toast.makeText(this, "About item clicked!", Toast.LENGTH_SHORT).show()
+                // Show AboutFragment if no other fragments are on the backstack.
+                if(supportFragmentManager.backStackEntryCount == 0) {
+                    val fragmentTransaction = supportFragmentManager.beginTransaction()
+                    fragmentTransaction.replace(android.R.id.content, AboutFragment())
+                    fragmentTransaction.addToBackStack(null)
+                    fragmentTransaction.commit()
+                }
+                true
+            }
+            R.id.reload_page_item -> {
+                Toast.makeText(this, "Reloading...", Toast.LENGTH_SHORT).show()
+                geckoSession.reload()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     private fun createProgressDelegate(): GeckoSession.ProgressDelegate {

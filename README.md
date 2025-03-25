@@ -1,5 +1,5 @@
-# Grokweb
-A simple display of Grok's mobile web application. "Tinfoil" for Grok if you will. This was done
+# Webgrok 
+A display for Grok's mobile web application. "Tinfoil for Grok" if you will. This was done
 to port access to Grok to Android devices which aren't able to install the official Grok app, or
 those who may want to access it in a different way.
 
