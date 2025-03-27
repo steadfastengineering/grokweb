@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -12,36 +11,58 @@ android {
         buildConfig true
     }
 
+    // Sign all builds with same key. Ensure you have the correct environment variables set in
+    // bash session when running gradlew assembleDebug and gradlew assembleRelease manually.
+    // Building via IDE fails.
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("STORE_FILE"))
+            storePassword System.getenv("STORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+        debug {
+            storeFile file(System.getenv("STORE_FILE"))
+            storePassword System.getenv("STORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+
     defaultConfig {
         applicationId "com.steadfast.webgrok"
         minSdk 31
         targetSdk 35
         versionCode 1
-        versionName "1.0"
+        versionName "v1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "REPO_URL", "\"github.com/steadfastengineering/grokweb\""
     }
 
     buildTypes {
         release {
+
+            // minify is crashing with minifyEnabled=true.
             shrinkResources true
             minifyEnabled true
+            debuggable true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
         debug {
+            signingConfig signingConfigs.debug
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
     buildFeatures {
-        compose true
         buildConfig = true
     }
 
@@ -49,29 +70,24 @@ android {
         abi {
             enable true
             reset()
-            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            //noinspection ChromeOsAbiSupport --> If you need x86 or x86_64, add them below. ARM is ~95% of device market.
+            include "arm64-v8a" //, "armeabi-v7a"
             universalApk false
         }
     }
 }
 
 ext {
-    geckoviewChannel = "beta" // TODO: Set "stable" instead of "beta"
-    geckoviewVersion = "137.0.20250321113016" // TODO: check maven.mozilla.org for latest
+    // Gecko builds found here: https://maven.mozilla.org/?prefix=maven2/org/mozilla/geckoview/
+    geckoviewChannel = "" // For "stable" channel, omit the hyphen, and use empty quotes.
+    geckoviewVersion = "136.0.20250317200840"
 }
 
 dependencies {
-    implementation "org.mozilla.geckoview:geckoview-${geckoviewChannel}:${geckoviewVersion}"
+    implementation "org.mozilla.geckoview:geckoview${geckoviewChannel}:${geckoviewVersion}"
     implementation libs.androidx.appcompat
-    implementation libs.androidx.constraintlayout // For the about_fragment layout
+    implementation libs.androidx.constraintlayout
     implementation platform(libs.androidx.compose.bom)
-    implementation libs.androidx.activity.compose.v161
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation platform(libs.androidx.compose.bom)
-    debugImplementation libs.androidx.ui.tooling
-    debugRuntimeOnly libs.androidx.ui.test.manifest
-    androidTestImplementation libs.androidx.monitor
-    androidTestImplementation libs.junit
     implementation libs.androidx.lifecycle.viewmodel
+    implementation libs.androidx.fragment
 }

@@ -19,12 +19,36 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+#
 
+## Required for using minify?
 -dontwarn java.beans.BeanInfo
 -dontwarn java.beans.FeatureDescriptor
 -dontwarn java.beans.IntrospectionException
 -dontwarn java.beans.Introspector
 -dontwarn java.beans.PropertyDescriptor
+
+# Experimental. These classes should be automatically retained? Why are we crashing? Stacktrace just says fatal.
+#-keep class org.mozilla.geckoview.** { *; }
+#-dontwarn org.mozilla.geckoview.**
+
+# Protect potential JNI classes for libmagtsync.so
+#-keep class com.steadfast.**.*magtsync* { *; }
+#-keepclassmembers class com.steadfast.**.*magtsync* {
+#    native <methods>;
+#}
+#
+## GeckoView safety
+#-keep class org.mozilla.geckoview.** { *; }
+#-keepclassmembers class org.mozilla.geckoview.** {
+#    native <methods>;
+#}
+#-dontwarn org.mozilla.geckoview.**
+#
+## General native method preservation
+#-keepclasseswithmembers class * {
+#    native <methods>;
+#}
 
 # Shrink, optimize, and obfuscate the code
 -optimizationpasses 5

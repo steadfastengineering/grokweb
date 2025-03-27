@@ -18,13 +18,20 @@ the underlying website is between the user and the website.
   <img src="screenshots/screenshot_2.jpg" alt="Screenshot 2" style="width: 48%;">
 </div>
 
+### Releases
+- Run ```adb shell getprop ro.product.cpu.abi``` to determine your CPU architecture.
+- Grab APK from [here](https://github.com/steadfastengineering/grokweb/releases/latest) for your device.
+
 ### TODOs:
 - Launch intent for internet browser for any links that are not root or valid grok links.
 - Add feature for uploading documents to grok.  
 - Add feature to save images and things to local storage that are generated.
 
 ### Bugs: 
-- None right now, testing required.
+- When building with minifyEnabled=true, the app crashes with a fatal error. Possible related to:
+  - Missing `libmagtsync.so`
+  - Javascript error: `resource://gre/modules/addons/XPIInstall.sys.mjs`
+  - TODO: Resolve all runtime errors due to minifyEnable and shrink application size.
 
 ### License
 This project is licensed under the MIT License.

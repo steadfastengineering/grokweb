@@ -14,8 +14,9 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven { url "https://maven.mozilla.org/maven2/" }
-
+        maven {
+            url "https://maven.mozilla.org/maven2/"
+        }
         google()
         mavenCentral()
 
@@ -23,4 +24,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Webgrok"
-include ':app'
+include ':webgrok'
